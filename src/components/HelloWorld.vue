@@ -7,24 +7,23 @@
 
 <script>
 export default {
-  name: "HelloWorld",
+  name: 'HelloWorld',
   data() {
     return {
-      msg: "Welcome to Your Vue.js App"
-    };
+      msg: 'Welcome to Your Vue.js App'
+    }
   },
   computed: {
     name() {
-      return "chupeng";
+      return 'chupeng'
     }
   }
-};
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="stylus" scoped>
-h1,
-h2 {
+h1, h2 {
   font-weight: normal;
 }
 </style>

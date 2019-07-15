@@ -1,11 +1,11 @@
 /* eslint-disable no-new */
 // import '@babel/polyfill'
-import Vue from "vue";
-import App from "./App";
-import router from "./router";
+import Vue from 'vue'
+import App from './App'
+import router from './router'
 
 new Vue({
-  el: "#app",
+  el: '#app',
   router,
   ...App
-});
+})

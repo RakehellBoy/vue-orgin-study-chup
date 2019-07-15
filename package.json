@@ -10,6 +10,9 @@
     "lint": "eslint --ext .js,.vue src/",
     "lint:fix": "eslint --ext .js,.vue src/ --fix"
   },
+  "pre-commit": [
+		"lint"
+	],
   "dependencies": {
     "vue": "^2.6.10",
     "vue-router": "^3.0.7"
