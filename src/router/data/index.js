@@ -1,20 +1,20 @@
-import HelloWorld from "@/components/HelloWorld";
+import HelloWorld from '@/components/HelloWorld'
 
 const routes = [
   {
-    path: "/",
+    path: '/',
     component: HelloWorld,
     meta: {
-      titl: "Hello one"
+      titl: 'Hello one'
     }
   },
   {
-    path: "/HelloWorld",
+    path: '/HelloWorld',
     component: HelloWorld,
     meta: {
-      title: "Hello two"
+      title: 'Hello two'
     }
   }
-];
+]
 
-export default routes;
+export default routes

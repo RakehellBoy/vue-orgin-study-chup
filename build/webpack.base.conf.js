@@ -29,6 +29,7 @@ const BaseWebpackConfig = {
         loader: 'eslint-loader',
         enforce: 'pre',
         include: [utils.joinPath('src')],
+        exclude: [utils.joinPath('node-modules')],
         options: {
           // formatter: require('eslint-friendly-formatter'),
           // emitWarning: true, // 将eslint error转化为warning显示 dev-server overly:true是 eslint的报错就不会在浏览器显示了
@@ -39,7 +40,9 @@ const BaseWebpackConfig = {
         loader: 'vue-loader'
       }, {
         test: /\.js$/,
-        loader: 'babel-loader'
+        loader: 'babel-loader',
+        include: [utils.joinPath('src')],
+        exclude: [utils.joinPath('node-modules')]
       }, { 
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',

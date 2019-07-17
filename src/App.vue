@@ -1,7 +1,9 @@
 <template>
   <div>
     <img src="./assets/logo.png" />
-    <div v-for="item in list" :key="item">{{ item }}</div>
+    <div v-for="item in list" :key="item">
+      {{ item }}
+    </div>
     <router-view />
   </div>
 </template>

@@ -92,39 +92,18 @@
     eslint-plugin-prettier  为了 eslint 跟 prettier 可以联合使用
     
 
-    
-    
 
 
 
 
 
-
-
-
-
-
-
-
-# Git 常用命令列表
-# 1 常用
-$ git remote add origin git@github.com:yeszao/dofiler.git         # 配置远程git版本库
-$ git pull origin master                                          # 下载代码及快速合并 
-$ git push origin master                                          # 上传代码及快速合并
+## Git 常用命令列表
 $ git fetch origin                                                # 从远程库获取代码
-$ git branch                                                      # 显示所有分支
-$ git checkout master                                             # 切换到master分支
-$ git checkout -b dev                                             # 创建并切换到dev分支
-$ git commit -m "first version"                                   # 提交
-$ git status                                                      # 查看状态
-$ git log                                                         # 查看提交历史
-$ git config --global user.name "YOUR NAME"                       # 设置用户名
-$ git config --global user.email "YOUR EMAIL ADDRESS"             # 设置邮箱
 
-# 2 创建版本库
+# 创建版本库
 $ git clone <url>                 # 克隆远程版本库
 $ git init                        # 初始化本地版本库
-# 3 修改和提交
+#  修改和提交
 $ git status                      # 查看状态
 $ git diff                        # 查看变更内容
 $ git add .                       # 跟踪所有改动过的文件
@@ -135,17 +114,17 @@ $ git rm --cached <file>          # 停止跟踪文件但不删除
 $ git commit -m “commit message”  # 提交所有更新过的文件
 $ git commit --amend              # 修改最后一次提交
 
-5 查看提交历史
+# 查看提交历史
 $ git log                         # 查看提交历史
 $ git log -p <file>               # 查看指定文件的提交历史
 $ git blame <file>                # 以列表方式查看指定文件的提交历史
-#6 撤消
+# 撤消
 $ git reset --hard HEAD           # 撤消工作目录中所有未提交文件的修改内容
 $ git reset --hard <version>      # 撤销到某个特定版本
 $ git checkout HEAD <file>        # 撤消指定的未提交文件的修改内容
 $ git checkout -- <file>          # 同上一个命令
 $ git revert <commit>             # 撤消指定的提交
-7 分支与标签
+#分支与标签
 $ git branch                      # 显示所有本地分支
 $ git checkout <branch/tag>       # 切换到指定分支或标签
 $ git branch <new-branch>         # 创建新分支

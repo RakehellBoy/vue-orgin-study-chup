@@ -1,17 +1,17 @@
-import Vue from "vue";
-import Router from "vue-router";
-import routes from "./data";
-Vue.use(Router);
+import Vue from 'vue'
+import Router from 'vue-router'
+import routes from './data'
+Vue.use(Router)
 
 const router = new Router({
   routes: routes,
-  mode: "history"
-});
+  mode: 'history'
+})
 
 router.beforeEach((to, from, next) => {
-  if (!to.fullPath) next();
-});
+  if (!to.fullPath) next()
+})
 
-router.afterEach(() => {});
+router.afterEach(() => {})
 
-export default router;
+export default router
