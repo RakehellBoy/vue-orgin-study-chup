@@ -14,9 +14,6 @@
     "lint": "eslint --ext .js,.vue src/",
     "lint:fix": "eslint --ext .js,.vue src/ --fix"
   },
-  "pre-commit": [
-    "lint"
-  ],
   "dependencies": {
     "lodash": "^4.17.14",
     "vue": "^2.6.10",
@@ -69,7 +66,7 @@
   ],
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint",
+      "precommit": "npm run lint",
       "pre-push": "npm run lint"
     }
   }
