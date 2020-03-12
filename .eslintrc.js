@@ -1,42 +1,29 @@
 module.exports = {
-  root: true, 
+  root: true,
   parserOptions: {
-    parser: 'babel-eslint',  //默认使用Espree作为其解析器  @typescript-eslint/parser -
-    ecmaVersion: 6,
-    sourceType:  'module',// "script" (默认) 或 "module"
-    ecmaFeatures: {
-      jsx: true
-    }
+    parser: require.resolve('babel-eslint'),
+    ecmaVersion: 2018,
+    sourceType: 'module'
   },
   env: {
-    browser: false
-    // node: true,
-    // es6: true
+    es6: true,
+    node: true,
+    browser: true
   },
-  globals: {
-    "$": "readonly"
-  },
-  // eslint:recommended 或 eslint:all
-  extends: ['plugin:vue/essential', 'standard'],// 继承第三方已有配置,后面覆盖前面
   plugins: [
-    'vue'
+    "flowtype"
   ],
-  rules: {
-    // "prettier/prettier": "error",
-    'generator-star-spacing': 'off',
-    // 'space-before-function-paren': 'off',
-    'vue/script-indent': 'off',
-    'no-console': "error",
-    'no-debugger': process.env.NODE_ENV === 'production'? 'error': 'off'
+  extends: [
+    "eslint:recommended",
+    "plugin:flowtype/recommended"
+  ],
+  globals: {
+    "__WEEX__": true,
+    "WXEnvironment": true
   },
-  // 在 overrides.files 且不在 overrides.excludedFiles 的 文件，overrides.rules 中的规则会覆盖 rules 中的同名规则。
-  "overrides": [
-    {
-      "files": ["src/App.vue"],
-      "excludedFiles": "*.test.js",
-      "rules": {
-        "indent": 1
-      }
-    }
-  ]
+  rules: {
+    'no-console': process.env.NODE_ENV !== 'production' ? 0 : 2,
+    'no-useless-escape': 0,
+    'no-empty': 0
+  }
 }

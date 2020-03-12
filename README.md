@@ -1,145 +1,344 @@
-# const { CleanWebpackPlugin } = require('clean-webpack-plugin')  =>  new CleanWebpackPlugin()
+<p align="center"><a href="https://vuejs.org" target="_blank" rel="noopener noreferrer"><img width="100" src="https://vuejs.org/images/logo.png" alt="Vue logo"></a></p>
 
-# webpack  webpack-cli  webpack-dev-server  webpack-merge 四件套
+<p align="center">
+  <a href="https://circleci.com/gh/vuejs/vue/tree/dev"><img src="https://img.shields.io/circleci/project/github/vuejs/vue/dev.svg" alt="Build Status"></a>
+  <a href="https://codecov.io/github/vuejs/vue?branch=dev"><img src="https://img.shields.io/codecov/c/github/vuejs/vue/dev.svg" alt="Coverage Status"></a>
+  <a href="https://npmcharts.com/compare/vue?minimal=true"><img src="https://img.shields.io/npm/dm/vue.svg" alt="Downloads"></a>
+  <a href="https://www.npmjs.com/package/vue"><img src="https://img.shields.io/npm/v/vue.svg" alt="Version"></a>
+  <a href="https://www.npmjs.com/package/vue"><img src="https://img.shields.io/npm/l/vue.svg" alt="License"></a>
+  <a href="https://chat.vuejs.org/"><img src="https://img.shields.io/badge/chat-on%20discord-7289da.svg" alt="Chat"></a>
+  <br>
+  <a href="https://app.saucelabs.com/builds/50f8372d79f743a3b25fb6ca4851ca4c"><img src="https://app.saucelabs.com/buildstatus/vuejs" alt="Build Status"></a>
+</p>
 
-# vue 使用 vue-loader vue-template-compiler加载模板; 
-# vue-style-loader css-loader加载css样式; 
-# vue-style-loader css-loader stylus stylus-loader 加载stylus样式 以此类推解决sass scss等
-# url-loader file-loader 解决文件图片等资源加载
-# babel-loader配合@babel/core  @babel/preset-env 加一个.babelrc配置文件解决ES6语法解析
+<h2 align="center">Supporting Vue.js</h2>
 
-## babel preset state
-     // Stage 0
-    "@babel/plugin-proposal-function-bind",
+Vue.js is an MIT-licensed open source project with its ongoing development made possible entirely by the support of these awesome [backers](https://github.com/vuejs/vue/blob/dev/BACKERS.md). If you'd like to join them, please consider:
 
-    // Stage 1
-    "@babel/plugin-proposal-export-default-from",
-    "@babel/plugin-proposal-logical-assignment-operators",
-    ["@babel/plugin-proposal-optional-chaining", { "loose": false }],
-    ["@babel/plugin-proposal-pipeline-operator", { "proposal": "minimal" }],
-    ["@babel/plugin-proposal-nullish-coalescing-operator", { "loose": false }],
-    "@babel/plugin-proposal-do-expressions",
+- [Become a backer or sponsor on Patreon](https://www.patreon.com/evanyou).
+- [Become a backer or sponsor on Open Collective](https://opencollective.com/vuejs).
+- [One-time donation via PayPal or crypto-currencies.](https://vuejs.org/support-vuejs/#One-time-Donations)
 
-    // Stage 2
-    ["@babel/plugin-proposal-decorators", { "legacy": true }],
-    "@babel/plugin-proposal-function-sent",
-    "@babel/plugin-proposal-export-namespace-from",
-    "@babel/plugin-proposal-numeric-separator",
-    "@babel/plugin-proposal-throw-expressions",
+#### What's the difference between Patreon and OpenCollective?
 
-    // Stage 3
-    "@babel/plugin-syntax-dynamic-import", 动态import引入支持
-    "@babel/plugin-syntax-import-meta",
-    ["@babel/plugin-proposal-class-properties", { "loose": true }],
-    "@babel/plugin-proposal-json-strings" -->
+Funds donated via Patreon go directly to support Evan You's full-time work on Vue.js. Funds donated via OpenCollective are managed with transparent expenses and will be used for compensating work and expenses for core team members or sponsoring community events. Your name/logo will receive proper recognition and exposure by donating on either platform.
 
-# @babel/plugin-transform-async-to-generator async函数使用
+<h3 align="center">Special Sponsors</h3>
+<!--special start-->
 
-## ESLint，可将 静态代码分析 和 问题代码协助修复 集成到 编码、提交 和 打包 过程中，及早发现并协助修复代码中：
+<p align="center">
+  <a href="https://autocode.com" target="_blank">
+    <img width="260px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/autocode.svg">
+  </a>
+</p>
+  
+<!--special end-->
 
-   * 有语法错误的部分
-   * 不符合约定的样式准则的部分
-   * 不符合约定的最佳实践的部分
+<h3 align="center">Platinum Sponsors</h3>
 
-   * 在项目开发中获得如下收益：
-   * 在执行代码之前发现并修复语法错误，减少调试耗时和潜在 bug
-   * 保证项目的编码风格统一，提高可维护性
-   * 督促团队成员在编码时遵守约定的最佳实践，提高代码质量
-# 1. 多次指定同一选项，每次接收一个不同的参数
-    eslint --ext .jsx --ext .js lib/
+<!--platinum start-->
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="middle">
+        <a href="https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1" target="_blank">
+          <img width="222px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/vueschool.png">
+        </a>
+      </td>
+      <td align="center" valign="middle">
+        <a href="https://vehikl.com/" target="_blank">
+          <img width="222px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/vehikl.png">
+        </a>
+      </td>
+      <td align="center" valign="middle">
+        <a href="https://retool.com/?utm_source=sponsor&utm_campaign=vue" target="_blank">
+          <img width="222px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/retool.png">
+        </a>
+      </td>
+      <td align="center" valign="middle">
+        <a href="https://passionatepeople.io/" target="_blank">
+          <img width="222px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/passionate_people.png">
+        </a>
+      </td>
+    </tr><tr></tr>
+    <tr>
+      <td align="center" valign="middle">
+        <a href="https://www.storyblok.com" target="_blank">
+          <img width="222px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/storyblok.png">
+        </a>
+      </td>
+    </tr><tr></tr>
+  </tbody>
+</table>
+<!--platinum end-->
 
-# 2. 将参数列表用逗号分隔，一次传给选项
-    eslint --ext .jsx,.js lib/
+<!--special-china start-->
+<h3 align="center">Platinum Sponsors (China)</h3>
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="middle">
+        <a href="http://www.dcloud.io/?hmsr=vuejsorg&hmpl=&hmcu=&hmkw=&hmci=" target="_blank">
+          <img width="177px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/dcloud.gif">
+        </a>
+      </td>
+    </tr><tr></tr>
+  </tbody>
+</table>
+<!--special-china end-->
 
-# 配置文件格式
-    JavaScript - use .eslintrc.js 文件导出一个包含配置信息的对象
-    JSON - 使用 .eslintrc.json 定义配置信息，JSON 文件中支持 JavaScript 注释。
-    package.json - 在 package.json 文件中增加一个 eslintConfig 字段，在该字段中定义配置信息。
-    .eslintrc - 已废弃
-#如果在同一个目录中有多个配置文件，则它们中间只有一个是有效的，优先级如下：
+<h3 align="center">Gold Sponsors</h3>
 
-    .eslintrc.js
-    .eslintrc.yaml
-    .eslintrc.yml
-    .eslintrc.json
-    .eslintrc
-    .package.json
-# 可在文件中使用注释配置禁用全部规则或指定规则：
+<!--gold start-->
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="middle">
+        <a href="https://www.vuemastery.com/" target="_blank">
+          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/vuemastery.png">
+        </a>
+      </td>
+      <td align="center" valign="middle">
+        <a href="https://laravel.com" target="_blank">
+          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/laravel.png">
+        </a>
+      </td>
+      <td align="center" valign="middle">
+        <a href="https://htmlburger.com" target="_blank">
+          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/html_burger.png">
+        </a>
+      </td>
+      <td align="center" valign="middle">
+        <a href="https://www.frontenddeveloperlove.com/" target="_blank">
+          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/frontendlove.png">
+        </a>
+      </td>
+      <td align="center" valign="middle">
+        <a href="https://onsen.io/vue/" target="_blank">
+          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/onsen_ui.png">
+        </a>
+      </td>
+      <td align="center" valign="middle">
+        <a href="https://neds.com.au/" target="_blank">
+          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/neds.png">
+        </a>
+      </td>
+    </tr><tr></tr>
+    <tr>
+      <td align="center" valign="middle">
+        <a href="https://icons8.com/" target="_blank">
+          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/icons_8.png">
+        </a>
+      </td>
+      <td align="center" valign="middle">
+        <a href="https://vuejobs.com/?ref=vuejs" target="_blank">
+          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/vuejobs.png">
+        </a>
+      </td>
+      <td align="center" valign="middle">
+        <a href="https://tidelift.com/subscription/npm/vue" target="_blank">
+          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/tidelift.png">
+        </a>
+      </td>
+      <td align="center" valign="middle">
+        <a href="https://opteo.com/vue" target="_blank">
+          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/opteo.png">
+        </a>
+      </td>
+      <td align="center" valign="middle">
+        <a href="https://devsquad.com/" target="_blank">
+          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/devsquad.png">
+        </a>
+      </td>
+      <td align="center" valign="middle">
+        <a href="https://www.firesticktricks.com/" target="_blank">
+          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/firestick_tricks.png">
+        </a>
+      </td>
+    </tr><tr></tr>
+    <tr>
+      <td align="center" valign="middle">
+        <a href="https://intygrate.com/" target="_blank">
+          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/intygrate.png">
+        </a>
+      </td>
+      <td align="center" valign="middle">
+        <a href="http://en.shopware.com/" target="_blank">
+          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/shopware_ag.png">
+        </a>
+      </td>
+      <td align="center" valign="middle">
+        <a href="https://www.bacancytechnology.com" target="_blank">
+          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/bacancy_technology.png">
+        </a>
+      </td>
+      <td align="center" valign="middle">
+        <a href="https://www.bestvpn.co/" target="_blank">
+          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/bestvpn_co.png">
+        </a>
+      </td>
+      <td align="center" valign="middle">
+        <a href="https://www.y8.com/" target="_blank">
+          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/y8.png">
+        </a>
+      </td>
+      <td align="center" valign="middle">
+        <a href="https://js.devexpress.com/" target="_blank">
+          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/devexpress.png">
+        </a>
+      </td>
+    </tr><tr></tr>
+    <tr>
+      <td align="center" valign="middle">
+        <a href="https://fastcoding.jp/javascript/ " target="_blank">
+          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/fastcoding_inc.svg">
+        </a>
+      </td>
+      <td align="center" valign="middle">
+        <a href="https://usave.co.uk/utilities/broadband" target="_blank">
+          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/usave.png">
+        </a>
+      </td>
+      <td align="center" valign="middle">
+        <a href="https://www.dailynow.co/" target="_blank">
+          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/daily.png">
+        </a>
+      </td>
+      <td align="center" valign="middle">
+        <a href="https://storekit.com" target="_blank">
+          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/storekit.png">
+        </a>
+      </td>
+      <td align="center" valign="middle">
+        <a href="http://www.pullrequest.com" target="_blank">
+          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/pullrequest.svg">
+        </a>
+      </td>
+      <td align="center" valign="middle">
+        <a href="https://unicorn.io/" target="_blank">
+          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/unicorn_io.png">
+        </a>
+      </td>
+    </tr><tr></tr>
+    <tr>
+      <td align="center" valign="middle">
+        <a href=" https://programmers.io/vuejs/" target="_blank">
+          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/programmers_io.png">
+        </a>
+      </td>
+      <td align="center" valign="middle">
+        <a href="https://www.vuescreencasts.com/" target="_blank">
+          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/happy_programmer_llc.png">
+        </a>
+      </td>
+      <td align="center" valign="middle">
+        <a href="https://www.primefaces.org/primevue" target="_blank">
+          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/primevue.png">
+        </a>
+      </td>
+    </tr><tr></tr>
+  </tbody>
+</table>
+<!--gold end-->
+
+<h3 align="center">Sponsors via <a href="https://opencollective.com/vuejs">Open Collective</a></h3>
+
+<h4 align="center">Platinum</h4>
+
+<a href="https://opencollective.com/vuejs/tiers/platinum-sponsors/0/website" target="_blank" rel="noopener noreferrer"><img src="https://opencollective.com/vuejs/tiers/platinum-sponsors/0/avatar.svg"></a>
+<a href="https://opencollective.com/vuejs/tiers/platinum-sponsors/1/website" target="_blank" rel="noopener noreferrer"><img src="https://opencollective.com/vuejs/tiers/platinum-sponsors/1/avatar.svg"></a>
+
+<h4 align="center">Gold</h4>
+
+<a href="https://opencollective.com/vuejs/tiers/gold-sponsors/0/website" target="_blank" rel="noopener noreferrer"><img src="https://opencollective.com/vuejs/tiers/gold-sponsors/0/avatar.svg" height="60px"></a>
+<a href="https://opencollective.com/vuejs/tiers/gold-sponsors/1/website" target="_blank" rel="noopener noreferrer"><img src="https://opencollective.com/vuejs/tiers/gold-sponsors/1/avatar.svg" height="60px"></a>
+<a href="https://opencollective.com/vuejs/tiers/gold-sponsors/2/website" target="_blank" rel="noopener noreferrer"><img src="https://opencollective.com/vuejs/tiers/gold-sponsors/2/avatar.svg" height="60px"></a>
+<a href="https://opencollective.com/vuejs/tiers/gold-sponsors/3/website" target="_blank" rel="noopener noreferrer"><img src="https://opencollective.com/vuejs/tiers/gold-sponsors/3/avatar.svg" height="60px"></a>
+<a href="https://opencollective.com/vuejs/tiers/gold-sponsors/4/website" target="_blank" rel="noopener noreferrer"><img src="https://opencollective.com/vuejs/tiers/gold-sponsors/4/avatar.svg" height="60px"></a>
+
+---
+
+## Introduction
+
+Vue (pronounced `/vjuː/`, like view) is a **progressive framework** for building user interfaces. It is designed from the ground up to be incrementally adoptable, and can easily scale between a library and a framework depending on different use cases. It consists of an approachable core library that focuses on the view layer only, and an ecosystem of supporting libraries that helps you tackle complexity in large Single-Page Applications.
+
+#### Browser Compatibility
+
+Vue.js supports all browsers that are [ES5-compliant](http://kangax.github.io/compat-table/es5/) (IE8 and below are not supported).
+
+## Ecosystem
+
+| Project | Status | Description |
+|---------|--------|-------------|
+| [vue-router]          | [![vue-router-status]][vue-router-package] | Single-page application routing |
+| [vuex]                | [![vuex-status]][vuex-package] | Large-scale state management |
+| [vue-cli]             | [![vue-cli-status]][vue-cli-package] | Project scaffolding |
+| [vue-loader]          | [![vue-loader-status]][vue-loader-package] | Single File Component (`*.vue` file) loader for webpack |
+| [vue-server-renderer] | [![vue-server-renderer-status]][vue-server-renderer-package] | Server-side rendering support |
+| [vue-class-component] | [![vue-class-component-status]][vue-class-component-package] | TypeScript decorator for a class-based API |
+| [vue-rx]              | [![vue-rx-status]][vue-rx-package] | RxJS integration |
+| [vue-devtools]        | [![vue-devtools-status]][vue-devtools-package] | Browser DevTools extension |
+
+[vue-router]: https://github.com/vuejs/vue-router
+[vuex]: https://github.com/vuejs/vuex
+[vue-cli]: https://github.com/vuejs/vue-cli
+[vue-loader]: https://github.com/vuejs/vue-loader
+[vue-server-renderer]: https://github.com/vuejs/vue/tree/dev/packages/vue-server-renderer
+[vue-class-component]: https://github.com/vuejs/vue-class-component
+[vue-rx]: https://github.com/vuejs/vue-rx
+[vue-devtools]:  https://github.com/vuejs/vue-devtools
+
+[vue-router-status]: https://img.shields.io/npm/v/vue-router.svg
+[vuex-status]: https://img.shields.io/npm/v/vuex.svg
+[vue-cli-status]: https://img.shields.io/npm/v/@vue/cli.svg
+[vue-loader-status]: https://img.shields.io/npm/v/vue-loader.svg
+[vue-server-renderer-status]: https://img.shields.io/npm/v/vue-server-renderer.svg
+[vue-class-component-status]: https://img.shields.io/npm/v/vue-class-component.svg
+[vue-rx-status]: https://img.shields.io/npm/v/vue-rx.svg
+[vue-devtools-status]: https://img.shields.io/chrome-web-store/v/nhdogjmejiglipccpnnnanhbledajbpd.svg
+
+[vue-router-package]: https://npmjs.com/package/vue-router
+[vuex-package]: https://npmjs.com/package/vuex
+[vue-cli-package]: https://npmjs.com/package/@vue/cli
+[vue-loader-package]: https://npmjs.com/package/vue-loader
+[vue-server-renderer-package]: https://npmjs.com/package/vue-server-renderer
+[vue-class-component-package]: https://npmjs.com/package/vue-class-component
+[vue-rx-package]: https://npmjs.com/package/vue-rx
+[vue-devtools-package]: https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd
+
+## Documentation
+
+To check out [live examples](https://vuejs.org/v2/examples/) and docs, visit [vuejs.org](https://vuejs.org).
+
+## Questions
+
+For questions and support please use [the official forum](http://forum.vuejs.org) or [community chat](https://chat.vuejs.org/). The issue list of this repo is **exclusively** for bug reports and feature requests.
+
+## Issues
+
+Please make sure to read the [Issue Reporting Checklist](https://github.com/vuejs/vue/blob/dev/.github/CONTRIBUTING.md#issue-reporting-guidelines) before opening an issue. Issues not conforming to the guidelines may be closed immediately.
+
+## Changelog
+
+Detailed changes for each release are documented in the [release notes](https://github.com/vuejs/vue/releases).
+
+## Stay In Touch
+
+- [Twitter](https://twitter.com/vuejs)
+- [Blog](https://medium.com/the-vue-point)
+- [Job Board](https://vuejobs.com/?ref=vuejs)
+
+## Contribution
+
+Please make sure to read the [Contributing Guide](https://github.com/vuejs/vue/blob/dev/.github/CONTRIBUTING.md) before making a pull request. If you have a Vue-related project/component/tool, add it with a pull request to [this curated list](https://github.com/vuejs/awesome-vue)!
+
+Thank you to all the people who already contributed to Vue!
+
+<a href="https://github.com/vuejs/vue/graphs/contributors"><img src="https://opencollective.com/vuejs/contributors.svg?width=890" /></a>
 
 
-块级禁用
-    /* eslint-disable */
-    alert('foo');
-    console.log('bar');
-    /* eslint-enable no-alert, no-console */
+## License
 
+[MIT](http://opensource.org/licenses/MIT)
 
-在指定行中禁用
-    alert('foo'); // eslint-disable-line no-alert, quotes, semi
-    alert('foo'); /* eslint-disable-line no-alert, quotes, semi   */
-
-#   babel-eslint perser解析器
-    eslint
-    eslint-config-standard 官方自己的基础校验规则
-    eslint-friendly-formatter 错误提示友好
-    eslint-loader 加载
-    eslint-plugin-import
-    eslint-plugin-node
-    eslint-plugin-promise
-    eslint-plugin-standard
-    eslint-plugin-vue
-    eslint-config-prettier  为了让 eslint 跟 prettier 兼容，关闭 prettier 跟 eslint 冲突的rules
-    eslint-plugin-prettier  为了 eslint 跟 prettier 可以联合使用
-    
-
-
-
-
-
-
-## Git 常用命令列表
-$ git fetch origin                                                # 从远程库获取代码
-
-# 创建版本库
-$ git clone <url>                 # 克隆远程版本库
-$ git init                        # 初始化本地版本库
-#  修改和提交
-$ git status                      # 查看状态
-$ git diff                        # 查看变更内容
-$ git add .                       # 跟踪所有改动过的文件
-$ git add <file>                  # 跟踪指定的文件
-$ git mv <old> <new>              # 文件改名
-$ git rm <file>                   # 删除文件
-$ git rm --cached <file>          # 停止跟踪文件但不删除
-$ git commit -m “commit message”  # 提交所有更新过的文件
-$ git commit --amend              # 修改最后一次提交
-
-# 查看提交历史
-$ git log                         # 查看提交历史
-$ git log -p <file>               # 查看指定文件的提交历史
-$ git blame <file>                # 以列表方式查看指定文件的提交历史
-# 撤消
-$ git reset --hard HEAD           # 撤消工作目录中所有未提交文件的修改内容
-$ git reset --hard <version>      # 撤销到某个特定版本
-$ git checkout HEAD <file>        # 撤消指定的未提交文件的修改内容
-$ git checkout -- <file>          # 同上一个命令
-$ git revert <commit>             # 撤消指定的提交
-#分支与标签
-$ git branch                      # 显示所有本地分支
-$ git checkout <branch/tag>       # 切换到指定分支或标签
-$ git branch <new-branch>         # 创建新分支
-$ git branch -d <branch>          # 删除本地分支
-$ git tag                         # 列出所有本地标签
-$ git tag <tagname>               # 基于最新提交创建标签
-$ git tag -a "v1.0" -m "一些说明"  # -a指定标签名称，-m指定标签说明
-$ git tag -d <tagname>            # 删除标签
-
-$ git checkout dev                # 合并特定的commit到dev分支上
-$ git cherry-pick 62ecb3
-8 合并与衍合
-$ git merge <branch>              # 合并指定分支到当前分支
-$ git merge --abort               # 取消当前合并，重建合并前状态
-$ git merge dev -Xtheirs          # 以合并dev分支到当前分支，有冲突则以dev分支为准
-$ git rebase <branch>             # 衍合指定分支到当前分支
-$ git merge master                      # 合并master分支
-$ git push -u origin master             # 上传代码
+Copyright (c) 2013-present, Yuxi (Evan) You
