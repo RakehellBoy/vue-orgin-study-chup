@@ -29,7 +29,7 @@ import {
 const strats = config.optionMergeStrategies
 
 /**
- * Options with restrictions
+ * 添加一个报错判断，后用默认策略(有子用子，否则用父)
  */
 if (process.env.NODE_ENV !== 'production') {
   strats.el = strats.propsData = function (parent, child, vm, key) {
@@ -50,9 +50,7 @@ function mergeData (to: Object, from: ?Object): Object {
   if (!from) return to
   let key, toVal, fromVal
 
-  const keys = hasSymbol
-    ? Reflect.ownKeys(from)
-    : Object.keys(from)
+  const keys = hasSymbol ? Reflect.ownKeys(from) : Object.keys(from)
 
   for (let i = 0; i < keys.length; i++) {
     key = keys[i]
@@ -62,11 +60,7 @@ function mergeData (to: Object, from: ?Object): Object {
     fromVal = from[key]
     if (!hasOwn(to, key)) {
       set(to, key, fromVal)
-    } else if (
-      toVal !== fromVal &&
-      isPlainObject(toVal) &&
-      isPlainObject(fromVal)
-    ) {
+    } else if ( toVal !== fromVal &&  isPlainObject(toVal) && isPlainObject(fromVal) ) {
       mergeData(toVal, fromVal)
     }
   }
@@ -144,19 +138,14 @@ strats.data = function (
  * Hooks and props are merged as arrays.
  */
 function mergeHook (
-  parentVal: ?Array<Function>,
-  childVal: ?Function | ?Array<Function>
+  parentVal: ?Array<Function>, // parentVal传入的必定为函数数组
+  childVal: ?Function | ?Array<Function> // childVal是数组或函数 
 ): ?Array<Function> {
-  const res = childVal
-    ? parentVal
-      ? parentVal.concat(childVal)
-      : Array.isArray(childVal)
-        ? childVal
-        : [childVal]
-    : parentVal
-  return res
-    ? dedupeHooks(res)
-    : res
+  //1. childVal不存在 直接返回 parentVal
+  //2. childVal存在 parentVal不存在 将childVal变成数组返回(也是为啥parentVal总是数组)
+  //3. childVal、parentVal都存在 将parentVal.concat(childVal)合拼追加数组
+  const res = childVal ? parentVal ? parentVal.concat(childVal) : Array.isArray(childVal) ? childVal : [childVal] : parentVal
+  return res ? dedupeHooks(res) : res // dedupeHooks()去除数组中重复的fn
 }
 
 function dedupeHooks (hooks) {
@@ -169,6 +158,8 @@ function dedupeHooks (hooks) {
   return res
 }
 
+// 'beforeCreate', 'created', 'beforeMount', 'mounted', 'beforeUpdate', 'updated',
+// 'beforeDestroy', 'destroyed', 'activated', 'deactivated', 'errorCaptured', 'serverPrefetch'
 LIFECYCLE_HOOKS.forEach(hook => {
   strats[hook] = mergeHook
 })
@@ -259,12 +250,10 @@ strats.computed = function (
 strats.provide = mergeDataOrFn
 
 /**
- * Default strategy.
+ * 默认合拼策略: childVal定义就是childVal， 否则使用parentVal
  */
 const defaultStrat = function (parentVal: any, childVal: any): any {
-  return childVal === undefined
-    ? parentVal
-    : childVal
+  return childVal === undefined ? parentVal : childVal
 }
 
 /**
