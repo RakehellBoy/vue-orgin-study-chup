@@ -90,7 +90,7 @@ export default class Watcher {
         )
       }
     }
-    this.value = this.lazy // lazy(懒加载)在computed(组件中的计算属性)中会用到
+    this.value = this.lazy
       ? undefined
       : this.get()
   }

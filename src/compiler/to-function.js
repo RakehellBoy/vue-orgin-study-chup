@@ -9,7 +9,7 @@ type CompiledFunctionResult = {
   staticRenderFns: Array<Function>;
 };
 
-function createFunction (code, errors) {
+function createFunction(code, errors) {
   try {
     return new Function(code)
   } catch (err) {
@@ -18,10 +18,10 @@ function createFunction (code, errors) {
   }
 }
 
-export function createCompileToFunctionFn (compile: Function): Function {
+export function createCompileToFunctionFn(compile: Function): Function {
   const cache = Object.create(null)
 
-  return function compileToFunctions (
+  return function compileToFunctions(
     template: string,
     options?: CompilerOptions,
     vm?: Component
@@ -34,6 +34,7 @@ export function createCompileToFunctionFn (compile: Function): Function {
     if (process.env.NODE_ENV !== 'production') {
       // detect possible CSP restriction
       try {
+        // 判断环境是否支持new Function, 将我们的template代码转换成函数
         new Function('return 1')
       } catch (e) {
         if (e.toString().match(/unsafe-eval|CSP/)) {
@@ -49,9 +50,7 @@ export function createCompileToFunctionFn (compile: Function): Function {
     }
 
     // check cache
-    const key = options.delimiters
-      ? String(options.delimiters) + template
-      : template
+    const key = options.delimiters ? String(options.delimiters) + template : template
     if (cache[key]) {
       return cache[key]
     }
@@ -62,6 +61,7 @@ export function createCompileToFunctionFn (compile: Function): Function {
     // check compilation errors/tips
     if (process.env.NODE_ENV !== 'production') {
       if (compiled.errors && compiled.errors.length) {
+        //编译有错 提示错误
         if (options.outputSourceRange) {
           compiled.errors.forEach(e => {
             warn(
@@ -79,6 +79,7 @@ export function createCompileToFunctionFn (compile: Function): Function {
         }
       }
       if (compiled.tips && compiled.tips.length) {
+        //输出编译过程中的 tip信息
         if (options.outputSourceRange) {
           compiled.tips.forEach(e => tip(e.msg, vm))
         } else {
@@ -90,6 +91,8 @@ export function createCompileToFunctionFn (compile: Function): Function {
     // turn code into functions
     const res = {}
     const fnGenErrors = []
+    //compiled.render此时是个字符串， 通过new Function(compiled.render) 返回一个function
+    // 如果new Function(compiled.render)出错，将错误信息fnGenErros.push(e) 返回noop
     res.render = createFunction(compiled.render, fnGenErrors)
     res.staticRenderFns = compiled.staticRenderFns.map(code => {
       return createFunction(code, fnGenErrors)
@@ -100,7 +103,9 @@ export function createCompileToFunctionFn (compile: Function): Function {
     // mostly for codegen development use
     /* istanbul ignore if */
     if (process.env.NODE_ENV !== 'production') {
+
       if ((!compiled.errors || !compiled.errors.length) && fnGenErrors.length) {
+        //编译过程没有错误, 但将编译后的字符串装换成函数出错了
         warn(
           `Failed to generate render function:\n\n` +
           fnGenErrors.map(({ err, code }) => `${err.toString()} in\n\n${code}\n`).join('\n'),

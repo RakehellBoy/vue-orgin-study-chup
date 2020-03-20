@@ -28,11 +28,13 @@ export function initMixin (Vue: Class<Component>) {
 
     // a flag to avoid this being observed
     vm._isVue = true
+    // merge options
     if (options && options._isComponent) {
-      // 组件实例化， 获取一些父组件的信息 如props传递 opts.propsData = vnodeComponentOptions.propsData
+      // optimize internal component instantiation
+      // since dynamic options merging is pretty slow, and none of the
+      // internal component options needs special treatment.
       initInternalComponent(vm, options)
     } else {
-      // new Vue({})
       vm.$options = mergeOptions(
         resolveConstructorOptions(vm.constructor),
         options || {},
@@ -89,11 +91,10 @@ export function initInternalComponent (vm: Component, options: InternalComponent
 }
 
 export function resolveConstructorOptions (Ctor: Class<Component>) {
-  let options = Ctor.options // vue构造函数 global-api/index中定义的... extend(Vue.options.directives, platformDirectives
-  // 有super属性，说明Ctor是Vue.extend构建的子类
+  let options = Ctor.options
   if (Ctor.super) {
     const superOptions = resolveConstructorOptions(Ctor.super)
-    const cachedSuperOptions = Ctor.superOptions // Vue构造函数上的options,如directives,filters,....
+    const cachedSuperOptions = Ctor.superOptions
     if (superOptions !== cachedSuperOptions) {
       // super option changed,
       // need to resolve new options.

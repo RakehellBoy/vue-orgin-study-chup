@@ -3,7 +3,7 @@
 import { ASSET_TYPES } from 'shared/constants'
 import { isPlainObject, validateComponentName } from '../util/index'
 
-export function initAssetRegisters (Vue: GlobalAPI) {
+export function initAssetRegisters(Vue: GlobalAPI) {
   /**
    * Create asset registration methods.
    */
@@ -17,6 +17,7 @@ export function initAssetRegisters (Vue: GlobalAPI) {
       } else {
         /* istanbul ignore if */
         if (process.env.NODE_ENV !== 'production' && type === 'component') {
+          //[a-zA-Z][\\-\\.0-9_]判断命名是否合法,是否与html/内置组件重名(slot,component)
           validateComponentName(id)
         }
         if (type === 'component' && isPlainObject(definition)) {

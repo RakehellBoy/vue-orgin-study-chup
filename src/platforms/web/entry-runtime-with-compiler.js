@@ -14,14 +14,18 @@ const idToTemplate = cached(id => {
   return el && el.innerHTML
 })
 
+// mount接收 ./runtime/index中定义的$mount
 const mount = Vue.prototype.$mount
+
+// 重新在Vue原型上定意思$mount, 主要为了扩展 组件template 解析成render函数相关方法 
+// 该方法会在core/instance/init.js中的Vue.prototype._init方法中调用(69行)， new Vue({})调用 this._init_
 Vue.prototype.$mount = function (
   el?: string | Element,
   hydrating?: boolean
 ): Component {
   el = el && query(el)
 
-  /* istanbul ignore if */
+  /* 不能选中body 和 html标签作为挂载点  */
   if (el === document.body || el === document.documentElement) {
     process.env.NODE_ENV !== 'production' && warn(
       `Do not mount Vue to <html> or <body> - mount to normal elements instead.`
@@ -30,8 +34,9 @@ Vue.prototype.$mount = function (
   }
 
   const options = this.$options
-  // resolve template/el and convert to render function
+  // 合并后的  options中存在render函数 直接跳过(即组件中template与 render同在, 此时忽视template)
   if (!options.render) {
+    // 
     let template = options.template
     if (template) {
       if (typeof template === 'string') {
@@ -63,10 +68,10 @@ Vue.prototype.$mount = function (
       }
 
       const { render, staticRenderFns } = compileToFunctions(template, {
-        outputSourceRange: process.env.NODE_ENV !== 'production',
-        shouldDecodeNewlines,
+        outputSourceRange: process.env.NODE_ENV !== 'production',  //输入输出异常是否需要,true提示, false不提示
+        shouldDecodeNewlines, // 换新行
         shouldDecodeNewlinesForHref,
-        delimiters: options.delimiters,
+        delimiters: options.delimiters, //分隔符
         comments: options.comments
       }, this)
       options.render = render
@@ -79,6 +84,8 @@ Vue.prototype.$mount = function (
       }
     }
   }
+
+  //调用./runtime/index中定义的 Vue.prototype.$mount
   return mount.call(this, el, hydrating)
 }
 
@@ -86,7 +93,7 @@ Vue.prototype.$mount = function (
  * Get outerHTML of elements, taking care
  * of SVG elements in IE as well.
  */
-function getOuterHTML (el: Element): string {
+function getOuterHTML(el: Element): string {
   if (el.outerHTML) {
     return el.outerHTML
   } else {
